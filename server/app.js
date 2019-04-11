@@ -2,6 +2,7 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 // GraphQL
 const schema = require('./schema/schema');
@@ -15,6 +16,9 @@ mongoose.connection.once('open', ()=>{
 // Start server
 const app = express();
 let port = 4000;
+
+// allow cross-origin requests
+app.use(cors)
 
 app.use('/graphql', graphqlHTTP({
   schema,
